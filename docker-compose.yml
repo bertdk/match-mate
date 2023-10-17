@@ -1,0 +1,12 @@
+# Dev containers for local development and testing
+version: '1'
+services:
+  core-db:
+    container_name: match-mate
+    image: postgres:latest
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./data/postgres:/data/postgres
+    env_file:
+      - docker.env

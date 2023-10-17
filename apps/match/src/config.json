@@ -1,0 +1,21 @@
+{
+  "nodeEnv": "local",
+  "cors": {
+    "origin": "*",
+    "credentials": true
+  },
+  "port": 4006,
+  "sentry": {
+    "dsn": "_",
+    "tracesSampleRate": 1,
+    "sampleRate": 1
+  },
+  "db": {
+    "user": "root",
+    "password": "root",
+    "dbName": "MATCH_MATE",
+    "host": "localhost",
+    "port": 5432,
+    "ssl": false
+  }
+}

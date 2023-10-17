@@ -1,0 +1,33 @@
+{
+  "extends": ["../../.eslintrc.json"],
+  "ignorePatterns": ["!**/*"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {},
+      "parserOptions": {
+        "project": "match-mate/libs/core-db/tsconfig.lib.json"
+      }
+    },
+    {
+      "files": [
+        "*.spec.ts",
+        "*.spec.js",
+        "*.test.ts",
+        "*.test.js",
+        "src/tests/**/*.ts"
+      ],
+      "rules": {},
+      "parserOptions": {
+        "project": "libs/core-db/tsconfig.spec.json"
+      }
+    },
+    {
+      "files": ["*.json"],
+      "parser": "jsonc-eslint-parser",
+      "rules": {
+        "@nx/dependency-checks": "error"
+      }
+    }
+  ]
+}

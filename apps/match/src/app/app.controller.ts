@@ -1,13 +1,18 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Injectable, Query } from '@nestjs/common';
 
-import { AppService } from './app.service';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { BaseController } from '@match-mate-api/nest-utils';
+import { GetTestQuery } from 'apps/match/src/app/getTest.query';
+import { ListAttributeView } from './getTest.view';
 
 @Controller()
-export class AppController {
-  constructor(private readonly appService: AppService) {}
-
+@Injectable()
+@ApiTags('app')
+export class AppController extends BaseController {
   @Get()
-  getData() {
-    return this.appService.getData();
+  @ApiResponse({ type: ListAttributeView })
+  @ApiOperation({ summary: 'Get data' })
+  getData(@Query() query: GetTestQuery) {
+    return this.execute(query);
   }
 }

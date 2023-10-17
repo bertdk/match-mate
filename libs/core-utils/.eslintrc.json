@@ -1,0 +1,27 @@
+{
+  "extends": ["../../.eslintrc.json"],
+  "ignorePatterns": ["!**/*"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {},
+      "parserOptions": {
+        "project": "match-mate/libs/core-utils/tsconfig.lib.json"
+      }
+    },
+    {
+      "files": [
+        "*.spec.ts",
+        "*.spec.js",
+        "*.test.ts",
+        "*.test.js",
+        "src/tests/**/*.ts"
+      ],
+
+      "rules": {},
+      "parserOptions": {
+        "project": "libs/core-utils/tsconfig.spec.json"
+      }
+    }
+  ]
+}

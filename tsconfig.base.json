@@ -8,13 +8,19 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
+    "esModuleInterop": true,
     "target": "es2015",
     "module": "esnext",
     "lib": ["es2020", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@match-mate-api/core-utils": ["libs/core-utils/src/index.ts"],
+      "@match-mate-api/db-utils": ["libs/core-db/src/index.ts"],
+      "@match-mate-api/nest-utils": ["libs/nest-utils/src/index.ts"],
+      "@match-mate-api/test-utils": ["libs/test-utils/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

@@ -14,7 +14,42 @@
         "outputPath": "dist/apps/match",
         "main": "apps/match/src/main.ts",
         "tsConfig": "apps/match/tsconfig.app.json",
-        "assets": ["apps/match/src/assets"],
+        "sourceMap": "hidden",
+        "generatePackageJson": true,
+        "assets": ["apps/match/src/assets", "apps/match/src/migrations/"],
+        "externalDependencies": [
+          "@mikro-orm/core",
+          "@mikro-orm/postgresql",
+          "@mikro-orm/migrations",
+          "class-transformer",
+          "@nestjs/core",
+          "rxjs",
+          "@nestjs/cqrs",
+          "@nestjs/common",
+          "class-transformer",
+          "class-validator",
+          "reflect-metadata",
+          "class-transformer/storage",
+          "@nestjs/swagger"
+        ],
+        "tsPlugins": [
+          {
+            "name": "@nestjs/swagger/plugin",
+            "options": {
+              "dtoFileNameSuffix": [
+                ".entity.ts",
+                ".body.ts",
+                ".view.ts",
+                ".query.ts"
+              ],
+              "controllerFileNameSuffix": [".controller.ts"],
+              "classValidatorShim": true,
+              "dtoKeyOfComment": "description",
+              "controllerKeyOfComment": "description",
+              "introspectComments": true
+            }
+          }
+        ],
         "isolatedConfig": true,
         "webpackConfig": "apps/match/webpack.config.js"
       },
