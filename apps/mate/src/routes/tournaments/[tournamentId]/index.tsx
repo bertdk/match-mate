@@ -20,6 +20,15 @@ export default component$(() => {
   );
 });
 
-export const head: DocumentHead = {
-  title: 'Tournament',
+export const head: DocumentHead = ({ resolveValue, params }) => {
+  const tournament = resolveValue(useTournamentData);
+  return {
+    title: `Tournament "${tournament.name}"`,
+    meta: [
+      {
+        name: 'id',
+        content: params.tournamentId,
+      },
+    ],
+  };
 };
