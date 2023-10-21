@@ -5,7 +5,7 @@ import { NotFoundException } from '@nestjs/common/exceptions/not-found.exception
 import path from 'path';
 import config from './config';
 
-const getEntities = (): any[] => {
+const getEntities = (): unknown[] => {
   if (process.env.WEBPACK) {
     const extracted = require.context(
       `../../../libs/core-db`,
