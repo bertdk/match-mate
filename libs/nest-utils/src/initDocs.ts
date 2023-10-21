@@ -12,5 +12,12 @@ export const initDocs = (
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('docs', app, document);
+  SwaggerModule.setup('docs', app, document, {
+    swaggerOptions: {
+      tryItOutEnabled: true,
+      docExpansion: 'list',
+      displayRequestDuration: true,
+      syntaxHighlight: { theme: 'arta' },
+    },
+  });
 };

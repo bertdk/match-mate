@@ -1,0 +1,3 @@
+{
+  "exportall.config.relExclusion": ["/match-mate/libs/nest-utils/src/index.ts"]
+}

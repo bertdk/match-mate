@@ -9,6 +9,7 @@ import {
   Injectable,
   PlainLiteralObject,
   ValidationPipe,
+  ValidationPipeOptions,
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { Observable } from 'rxjs';
@@ -16,10 +17,11 @@ import 'reflect-metadata';
 import { ValidationError, validate } from 'class-validator';
 import { plainToInstance } from 'class-transformer';
 
-const validationTransformationOptions = {
+const validationTransformationOptions: ValidationPipeOptions = {
   transform: true,
   transformOptions: {
     enableImplicitConversion: true,
+    enableCircularCheck: true,
   },
   whitelist: true,
   forbidUnknownValues: false,

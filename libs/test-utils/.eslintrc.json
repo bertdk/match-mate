@@ -6,7 +6,7 @@
       "files": ["*.ts", "*.tsx"],
       "rules": {},
       "parserOptions": {
-        "project": "match-mate/libs/test-utils/tsconfig.lib.json"
+        "project": "libs/test-utils/tsconfig.lib.json"
       }
     }
   ]
