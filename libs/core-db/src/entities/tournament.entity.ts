@@ -3,6 +3,7 @@ import { Collection, Entity, Enum, OneToMany, Property } from '@mikro-orm/core';
 import { Base } from '../utils';
 import { Player } from './player.entity';
 import { TournamentType } from '../types';
+import { Game } from './game.entity';
 
 @Entity()
 export class Tournament extends Base<Tournament> {
@@ -32,4 +33,7 @@ export class Tournament extends Base<Tournament> {
 
   @OneToMany(() => Player, (player) => player.tournament)
   public players = new Collection<Player>(this);
+
+  @OneToMany(() => Game, (game) => game.tournament)
+  public games = new Collection<Game>(this);
 }
