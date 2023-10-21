@@ -14,8 +14,10 @@ import { BaseController } from '@match-mate-api/nest-utils';
 import {
   EditTournamentBody,
   GetTournamentQuery,
+  GetTournamentRankingQuery,
   GetTournamentsQuery,
   ListTournamentsView,
+  ListTournamentRankingView,
   TournamentBody,
 } from './contracts';
 
@@ -34,6 +36,17 @@ export class TournamentController extends BaseController {
   @ApiOperation({ summary: 'Get a tournament' })
   getOne(
     @Query() query: GetTournamentQuery,
+    @Param('id') tournamentId: string
+  ) {
+    query.id = tournamentId;
+    return this.execute(query);
+  }
+
+  @Get('/:id/ranking')
+  @ApiResponse({ type: ListTournamentRankingView })
+  @ApiOperation({ summary: 'Get the ranking of a tournament' })
+  getRanking(
+    @Query() query: GetTournamentRankingQuery,
     @Param('id') tournamentId: string
   ) {
     query.id = tournamentId;
