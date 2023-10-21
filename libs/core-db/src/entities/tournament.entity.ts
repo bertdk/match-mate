@@ -10,7 +10,7 @@ export class Tournament extends Base<Tournament> {
   public name: string;
 
   @Enum({ items: () => TournamentType, default: TournamentType.roundRobin })
-  public type: TournamentType.roundRobin;
+  public type = TournamentType.roundRobin;
 
   @Property({ nullable: true })
   public publicCode?: string;
