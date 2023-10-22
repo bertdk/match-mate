@@ -1,11 +1,12 @@
 import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import { Link } from '@builder.io/qwik-city';
+import { Heading } from '@components';
 
 export default component$(() => {
   return (
     <div>
-      <h1>Welcome to Match Mate</h1>
+      <Heading text="Match Mate" />
 
       <Link href="/tournaments/create">Start a new tournament</Link>
     </div>
