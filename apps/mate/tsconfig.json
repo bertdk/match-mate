@@ -1,6 +1,7 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
+    "baseUrl": ".",
     "allowJs": true,
     "target": "ES2017",
     "module": "ES2020",
@@ -15,8 +16,11 @@
     "incremental": true,
     "isolatedModules": true,
     "outDir": "tmp",
-    "noEmit": true,
-    "types": ["node", "vite/client", "vitest"]
+    "noEmit": false,
+    "types": ["node", "vite/client", "vitest"],
+    "paths": {
+      "@components": ["./src/components/index.ts"]
+    }
   },
   "references": [
     {
@@ -26,5 +30,6 @@
       "path": "./tsconfig.spec.json"
     }
   ],
-  "include": ["src"]
+  "files": [],
+  "include": []
 }
