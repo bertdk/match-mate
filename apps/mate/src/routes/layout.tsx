@@ -4,7 +4,7 @@ import Header from '../components/header/header';
 export default component$(() => {
   return (
     <>
-      <main>
+      <main class="px-4 py-6">
         <Header />
         <section>
           <Slot />
