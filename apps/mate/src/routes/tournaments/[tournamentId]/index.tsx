@@ -77,7 +77,7 @@ export default component$(() => {
             child:
               ranking &&
               ranking.items.map((item, i) => (
-                <div key={item.id} class="flex flex-row">
+                <div key={item.id} class="flex flex-row mb-4 last:mb-0">
                   <p class="w-1/6">{i + 1}</p>
                   <p class="w-2/3">{item.name}</p>
                   <p class="w-1/6 text-right">{item.points}</p>
