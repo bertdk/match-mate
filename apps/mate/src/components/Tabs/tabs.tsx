@@ -35,7 +35,7 @@ export const Tabs = component$((props: Props) => {
 
   return (
     <>
-      <div class="text-sm font-medium text-center text-zinc-500 dark:text-zinc-400">
+      <div class="text-sm font-medium text-center text-zinc-500">
         <ul
           class="flex -mb-px p-0 list-none"
           id="tabs-parent"
@@ -45,7 +45,7 @@ export const Tabs = component$((props: Props) => {
           {props.tabs.map((tab) => (
             <li class="w-full p-0" role="presentation" key={tab.id}>
               <button
-                class="inline-block w-full p-4 border-b-2 rounded-t-lg hover:text-zinc-600 hover:border-zinc-300 dark:hover:text-zinc-300"
+                class="inline-block w-full p-4 border-b-2 rounded-t-lg"
                 id={`${tab.id}-tab`}
                 type="button"
                 role="tab"
