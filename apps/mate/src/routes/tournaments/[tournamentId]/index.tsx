@@ -1,5 +1,10 @@
 import { component$ } from '@builder.io/qwik';
-import { DocumentHead, routeLoader$ } from '@builder.io/qwik-city';
+import {
+  DocumentHead,
+  Link,
+  routeLoader$,
+  useLocation,
+} from '@builder.io/qwik-city';
 import { Tabs } from '@components';
 
 type TournamentGame = {
@@ -51,10 +56,19 @@ export default component$(() => {
   const tournament = useTournamentData().value;
   const ranking = useTournamentRanking().value;
   const games = useTournamentGames().value;
+  const loc = useLocation();
 
   return (
     <>
-      <h1 class="ml-4 text-xl">{tournament.name}</h1>
+      <div class="mx-4 flex flex-row justify-between">
+        <h1 class="text-xl m-0">{tournament.name}</h1>
+        <Link
+          href={`/tournaments/${loc.params.tournamentId}/games`}
+          class="flex items-center"
+        >
+          New game
+        </Link>
+      </div>
       <Tabs
         tabs={[
           {
