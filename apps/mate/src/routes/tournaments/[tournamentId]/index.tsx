@@ -2,6 +2,23 @@ import { component$ } from '@builder.io/qwik';
 import { DocumentHead, routeLoader$ } from '@builder.io/qwik-city';
 import { Tabs } from '@components';
 
+type TournamentGame = {
+  id: string;
+  scores: {
+    id: string;
+    gamePoints: number;
+    player: {
+      id: string;
+      name: string;
+    };
+  }[];
+};
+
+interface TournamentGames {
+  items: TournamentGame[];
+  count: number;
+}
+
 export const useTournamentData = routeLoader$(async (requestEvent) => {
   const res = await fetch(
     `http://localhost:4006/api/tournaments/${requestEvent.params.tournamentId}`,
@@ -21,22 +38,6 @@ export const useTournamentRanking = routeLoader$(async (requestEvent) => {
   return ranking;
 });
 
-type TournamentGame = {
-  id: string;
-  scores: {
-    id: string;
-    gamePoints: number;
-    player: {
-      id: string;
-      name: string;
-    };
-  }[];
-};
-
-interface TournamentGames {
-  items: TournamentGame[];
-  count: number;
-}
 export const useTournamentGames = routeLoader$(async (requestEvent) => {
   const res = await fetch(
     `http://localhost:4006/api/games?tournamentId=${requestEvent.params.tournamentId}`,
