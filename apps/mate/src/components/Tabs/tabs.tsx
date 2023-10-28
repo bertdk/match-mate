@@ -24,9 +24,10 @@ export const Tabs = component$((props: Props) => {
     }));
     const options: TabsOptions = {
       defaultTabId: inputTabs[0].id,
-      activeClasses: 'text-blue-600 hover:text-blue-600 border-blue-600',
+      activeClasses:
+        'text-blue-700 hover:text-blue-500 border-blue-700 hover:border-blue-500',
       inactiveClasses:
-        'text-gray-500 hover:text-gray-600 border-gray-100 hover:border-gray-300',
+        'text-zinc-700 hover:text-zinc-500 border-zinc-700 hover:border-zinc-500',
     };
 
     new FlowTabs(tabsElement.value, tabElements.value, options);
@@ -34,17 +35,17 @@ export const Tabs = component$((props: Props) => {
 
   return (
     <>
-      <div class="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
+      <div class="text-sm font-medium text-center text-zinc-500 dark:text-zinc-400">
         <ul
-          class="flex flex-wrap -mb-px p-0 list-none"
+          class="flex -mb-px p-0 list-none"
           id="tabs-parent"
           role="tablist"
           ref={tabsElement}
         >
           {props.tabs.map((tab) => (
-            <li class="mr-2" role="presentation" key={tab.id}>
+            <li class="w-full p-0" role="presentation" key={tab.id}>
               <button
-                class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                class="inline-block w-full p-4 border-b-2 rounded-t-lg hover:text-zinc-600 hover:border-zinc-300 dark:hover:text-zinc-300"
                 id={`${tab.id}-tab`}
                 type="button"
                 role="tab"
@@ -60,7 +61,7 @@ export const Tabs = component$((props: Props) => {
       <div id="tabContentExample">
         {props.tabs.map((tab) => (
           <div
-            class="hidden p-4 rounded-lg bg-gray-50"
+            class="hidden p-4 rounded-lg bg-zinc-50"
             id={`${tab.id}-target`}
             key={`${tab.id}-target`}
             role="tabpanel"

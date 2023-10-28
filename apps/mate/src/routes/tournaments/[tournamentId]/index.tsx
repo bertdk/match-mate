@@ -100,7 +100,7 @@ interface ScoreProps {
 }
 const Score = component$(({ game }: ScoreProps) => {
   return (
-    <div key={game.id} class="border border-zinc-400 p-2">
+    <div key={game.id} class="border-b-2 last:border-none border-zinc-400 p-2">
       {game.scores.map((score) => (
         <div key={score.id}>
           <div
