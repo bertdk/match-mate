@@ -9,5 +9,5 @@ COPY ./dist/apps/match /app
 RUN pnpm i
 RUN pnpm i source-map-support
 
-EXPOSE 4006
+EXPOSE 10000
 ENTRYPOINT [ "node", "-r", "source-map-support/register", "./main.js" ]
