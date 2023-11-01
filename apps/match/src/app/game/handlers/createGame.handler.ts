@@ -19,12 +19,12 @@ export class CreateGameHandler implements ICommandHandler<GameBody, GameView> {
         gamePoints: score.gamePoints,
         game: entity.id,
       });
-      if (score.gamePoints === Math.max(...scores)) {
+      if (Math.max(...scores) === Math.min(...scores)) {
+        newScore.rakingPoints = pointsOnTie;
+      } else if (score.gamePoints === Math.max(...scores)) {
         newScore.rakingPoints = pointsOnWin;
       } else if (score.gamePoints === Math.min(...scores)) {
         newScore.rakingPoints = pointsOnLoss;
-      } else {
-        newScore.rakingPoints = pointsOnTie;
       }
       this.em.persist(newScore);
     });
