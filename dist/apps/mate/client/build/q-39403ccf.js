@@ -1,0 +1,1 @@
+import{l as t,h as e,_ as a}from"./q-ee904b6c.js";const r=t(e(()=>a(()=>import("./q-020ee2c0.js"),["build/q-020ee2c0.js","build/q-ee904b6c.js","build/q-b1226339.js"]),"s_LqnNyU1Iy8c")),s={title:"Match Mate",meta:[{name:"description",content:"Match Mate app to keep track of your tournament scores"}]};export{r as default,s as head};

@@ -1,0 +1,27 @@
+{
+  "name": "match",
+  "version": "0.0.1",
+  "dependencies": {
+    "@ljobse/appsettings-loader": "0.1.7",
+    "@mikro-orm/core": "5.9.0",
+    "@mikro-orm/migrations": "5.9.0",
+    "@mikro-orm/nestjs": "5.2.2",
+    "@mikro-orm/postgresql": "5.9.0",
+    "@nestjs/common": "10.2.7",
+    "@nestjs/core": "10.2.7",
+    "@nestjs/cqrs": "10.2.6",
+    "@nestjs/platform-express": "10.2.7",
+    "@nestjs/swagger": "7.1.14",
+    "@sentry/node": "7.76.0",
+    "class-transformer": "0.5.1",
+    "class-validator": "0.14.0",
+    "express": "4.18.2",
+    "glob": "7.2.3",
+    "reflect-metadata": "0.1.13",
+    "rxjs": "7.8.1",
+    "tslib": "2.6.2",
+    "uuid": "9.0.1",
+    "webpack": "5.89.0"
+  },
+  "main": "main.js"
+}

@@ -1,0 +1,1 @@
+import{N as o,q as s,a}from"./q-ee904b6c.js";const c=t=>{const e=o(t,["text"]);return s("h1",{...e,children:a(r=>r.text,[t])},{class:"text-5xl font-extrabold dark:text-white"},0,"Tc_0")};export{c as s_Pwo8B1cYCN8};

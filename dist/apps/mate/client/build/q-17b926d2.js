@@ -1,0 +1,1 @@
+import{b as t}from"./q-ee904b6c.js";const n=s=>{const[r]=t();return s&&!/^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i.test(s)?r:""};export{n as s_WNtBdMWIifo};
