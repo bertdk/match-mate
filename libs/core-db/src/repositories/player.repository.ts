@@ -1,4 +1,4 @@
-import { EntityName, EntityRepository } from '@mikro-orm/core';
+import { EntityName, EntityRepository, QueryOrder } from '@mikro-orm/core';
 
 import { EntityManager } from '@mikro-orm/core';
 import { SqlEntityManager } from '@mikro-orm/postgresql';
@@ -22,7 +22,7 @@ export class PlayerRepository extends EntityRepository<Player> {
       .leftJoin('score.game', 'game', { tournament: tournamentId })
       .where({ tournament: tournamentId })
       .groupBy('p.id')
-      .orderBy({ 'SUM(score.raking_points)': 'desc' })
+      .orderBy({ 'SUM(score.raking_points)': QueryOrder.DESC_NULLS_LAST })
       .offset(offset)
       .limit(limit)
       .execute<{ id: string; name: string; points: string }[]>();
