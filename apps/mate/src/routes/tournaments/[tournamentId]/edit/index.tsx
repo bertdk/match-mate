@@ -8,34 +8,15 @@ import {
   zod$,
 } from '@builder.io/qwik-city';
 import { BasicInput, Button } from '@components';
-import axios from 'axios';
+import { getPlayers } from 'src/data/players.api';
+import { getTournament, updateTournament } from 'src/data/tournaments.api';
 
 export const usePlayersData = routeLoader$(async (requestEvent) => {
-  const res = await axios.get(
-    `http://localhost:4006/api/players/tournaments/${requestEvent.params.tournamentId}`,
-  );
-  const players = res.data;
-  return players as {
-    count: number;
-    items: {
-      id?: string;
-      name: string;
-    }[];
-  };
+  return getPlayers(requestEvent.params.tournamentId);
 });
 
 export const useTournamentData = routeLoader$(async (requestEvent) => {
-  const res = await axios.get(
-    `http://localhost:4006/api/tournaments/${requestEvent.params.tournamentId}`,
-  );
-  const tournament = res.data;
-  return tournament as {
-    id: string;
-    name: string;
-    pointsOnWin: number;
-    pointsOnTie: number;
-    pointsOnLoss: number;
-  };
+  return getTournament(requestEvent.params.tournamentId);
 });
 
 const formSchema = {
@@ -49,20 +30,7 @@ const formSchema = {
 };
 
 export const useUpdateTournament = routeAction$(async (input, requestEvent) => {
-  const response = await axios.patch(
-    `http://localhost:4006/api/tournaments/${requestEvent.params.tournamentId}`,
-    {
-      name: input.name,
-      players: input.players
-        .filter((x) => x.name)
-        .map((player) => ({
-          id: player.id,
-          name: player.name,
-        })),
-    },
-  );
-  const body = response.data;
-  return body as { id: string };
+  return updateTournament(requestEvent.params.tournamentId, input);
 }, zod$(formSchema));
 
 export default component$(() => {

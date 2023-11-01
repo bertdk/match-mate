@@ -8,6 +8,7 @@ import {
   zod$,
 } from '@builder.io/qwik-city';
 import { BasicInput, Button } from '@components';
+import { createTournament } from 'src/data/tournaments.api';
 
 const formSchema = {
   name: z.string().min(1).max(255),
@@ -16,20 +17,7 @@ const formSchema = {
   pointsOnLoss: z.coerce.number().min(0).max(100),
 };
 export const useCreateTournament = routeAction$(async (input) => {
-  const response = await fetch('http://localhost:4006/api/tournaments', {
-    method: 'post',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      name: input.name,
-      pointsOnWin: input.pointsOnWin,
-      pointsOnTie: input.pointsOnTie,
-      pointsOnLoss: input.pointsOnLoss,
-    }),
-  });
-  const body = await response.json();
-  return body as { name: string; id: string };
+  return createTournament(input);
 }, zod$(formSchema));
 
 export default component$(() => {

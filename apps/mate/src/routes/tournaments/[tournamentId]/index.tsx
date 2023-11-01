@@ -6,56 +6,19 @@ import {
   useLocation,
 } from '@builder.io/qwik-city';
 import { Tabs } from '@components';
-
-type TournamentGame = {
-  id: string;
-  scores: {
-    id: string;
-    gamePoints: number;
-    player: {
-      id: string;
-      name: string;
-    };
-  }[];
-};
-
-interface TournamentGames {
-  items: TournamentGame[];
-  count: number;
-}
+import { TournamentGame, getGames } from 'src/data/games.api';
+import { getRanking, getTournament } from 'src/data/tournaments.api';
 
 export const useTournamentData = routeLoader$(async (requestEvent) => {
-  const res = await fetch(
-    `http://localhost:4006/api/tournaments/${requestEvent.params.tournamentId}`,
-  );
-  const tournament = await res.json();
-  return tournament as {
-    id: string;
-    name: string;
-    pointsOnWin: number;
-    pointsOnTie: number;
-    pointsOnLoss: number;
-  };
+  return getTournament(requestEvent.params.tournamentId);
 });
 
 export const useTournamentRanking = routeLoader$(async (requestEvent) => {
-  const res = await fetch(
-    `http://localhost:4006/api/tournaments/${requestEvent.params.tournamentId}/ranking`,
-  );
-  const ranking = (await res.json()) as {
-    items: { name: string; points: number; id: string }[];
-    count: number;
-  };
-  return ranking;
+  return getRanking(requestEvent.params.tournamentId);
 });
 
 export const useTournamentGames = routeLoader$(async (requestEvent) => {
-  const res = await fetch(
-    `http://localhost:4006/api/games?tournamentId=${requestEvent.params.tournamentId}`,
-  );
-
-  const ranking = (await res.json()) as TournamentGames;
-  return ranking;
+  return getGames(requestEvent.params.tournamentId);
 });
 
 export default component$(() => {

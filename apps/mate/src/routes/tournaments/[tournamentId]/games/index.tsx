@@ -10,6 +10,8 @@ import {
   zod$,
 } from '@builder.io/qwik-city';
 import { BasicInput, Button, SelectInput } from '@components';
+import { createGame } from 'src/data/games.api';
+import { getPlayers } from 'src/data/players.api';
 
 const formSchema = {
   scores: z.array(
@@ -21,37 +23,11 @@ const formSchema = {
 };
 
 export const usePlayersData = routeLoader$(async (requestEvent) => {
-  const res = await fetch(
-    `http://localhost:4006/api/players/tournaments/${requestEvent.params.tournamentId}`,
-  );
-  const players = await res.json();
-  return players as {
-    count: number;
-    items: {
-      id?: string;
-      name: string;
-    }[];
-  };
+  return getPlayers(requestEvent.params.tournamentId);
 });
 
 export const useCreateTournament = routeAction$(async (input, requestEvent) => {
-  const response = await fetch(
-    `http://localhost:4006/api/games/tournaments/${requestEvent.params.tournamentId}`,
-    {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        scores: input.scores.map((score) => ({
-          playerId: score.playerId,
-          gamePoints: score.gamePoints,
-        })),
-      }),
-    },
-  );
-  const body = await response.json();
-  return body as { id: string };
+  return createGame(requestEvent.params.tournamentId, input);
 }, zod$(formSchema));
 
 export default component$(() => {
