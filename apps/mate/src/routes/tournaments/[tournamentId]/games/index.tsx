@@ -1,4 +1,4 @@
-import { component$ } from '@builder.io/qwik';
+import { component$, useTask$ } from '@builder.io/qwik';
 import {
   DocumentHead,
   Form,
@@ -62,9 +62,12 @@ export default component$(() => {
     value: player.id,
     label: player.name,
   }));
-  if (action.value?.id) {
-    nav(`/tournaments/${loc.params.tournamentId}`);
-  }
+  useTask$(({ track }) => {
+    track(() => action.value?.id);
+    if (action.value?.id) {
+      nav(`/tournaments/${loc.params.tournamentId}`);
+    }
+  });
 
   return (
     <>
