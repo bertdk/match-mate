@@ -29,7 +29,13 @@ export const useTournamentData = routeLoader$(async (requestEvent) => {
     `http://localhost:4006/api/tournaments/${requestEvent.params.tournamentId}`,
   );
   const tournament = await res.json();
-  return tournament;
+  return tournament as {
+    id: string;
+    name: string;
+    pointsOnWin: number;
+    pointsOnTie: number;
+    pointsOnLoss: number;
+  };
 });
 
 export const useTournamentRanking = routeLoader$(async (requestEvent) => {
@@ -69,6 +75,12 @@ export default component$(() => {
           New game
         </Link>
       </div>
+      <Link
+        href={`/tournaments/${loc.params.tournamentId}/edit`}
+        class="items-center"
+      >
+        Edit
+      </Link>
       <Tabs
         tabs={[
           {

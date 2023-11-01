@@ -37,7 +37,7 @@ export default component$(() => {
   const action = useCreateTournament();
 
   if (action.value?.name) {
-    nav(`/tournaments/${action.value.id}/players`);
+    nav(`/tournaments/${action.value.id}`);
   }
 
   return (
