@@ -4,7 +4,9 @@
   "license": "MIT",
   "scripts": {
     "serve:api": "nx serve match",
-    "serve:app": "nx serve mate"
+    "serve:app": "nx serve mate",
+    "build:api": "nx run match:build:production",
+    "build:app": "nx run mate:build"
   },
   "private": true,
   "dependencies": {
@@ -63,6 +65,7 @@
     "eslint-plugin-unused-imports": "^3.0.0",
     "jest": "^29.7.0",
     "jest-environment-node": "^29.7.0",
+    "netlify-cli": "^15.5.0",
     "node-fetch": "~3.3.2",
     "nx": "17.0.2",
     "nx-cloud": "16.5.2",
