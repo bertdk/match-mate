@@ -1,6 +1,10 @@
 FROM node:18-slim as BUILD
 
 RUN npm i -g pnpm@8
+RUN mkdir -p /app
+WORKDIR /app
+COPY . /app
+
 RUN pnpm i
 RUN nx run match:build:production
 
