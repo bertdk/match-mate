@@ -22,6 +22,9 @@ async function bootstrap() {
 
   const port = config.port;
   await app.listen(port);
+  app.enableCors(config.cors);
+
+  Logger.log(`Test env: ${config.test}`);
   Logger.log(`🚀 Application is running on: http://localhost:${port}/docs`);
 }
 
@@ -33,7 +36,7 @@ async function runMigrationsIfNeeded(app: INestApplication) {
     const migrations = await migrator.getPendingMigrations();
     await migrator.up();
     console.log(
-      `DEBUG INFO | successfully ran ${migrations.length} migrations`
+      `DEBUG INFO | successfully ran ${migrations.length} migrations`,
     );
   } catch (e) {
     captureException(e);
