@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { api } from './base.api';
 
 export const createTournament = async (body: {
   name: string;
@@ -6,7 +6,7 @@ export const createTournament = async (body: {
   pointsOnTie: number;
   pointsOnLoss: number;
 }) => {
-  const response = await axios.post('http://localhost:4006/api/tournaments', {
+  const response = await api.post('/tournaments', {
     name: body.name,
     pointsOnWin: body.pointsOnWin,
     pointsOnTie: body.pointsOnTie,
@@ -16,7 +16,7 @@ export const createTournament = async (body: {
 };
 
 export const getTournament = async (id: string) => {
-  const res = await axios.get(`http://localhost:4006/api/tournaments/${id}`);
+  const res = await api.get(`/tournaments/${id}`);
 
   return res.data as {
     id: string;
@@ -28,9 +28,7 @@ export const getTournament = async (id: string) => {
 };
 
 export const getRanking = async (tournamentId: string) => {
-  const res = await axios.get(
-    `http://localhost:4006/api/tournaments/${tournamentId}/ranking`,
-  );
+  const res = await api.get(`/tournaments/${tournamentId}/ranking`);
   return res.data as {
     items: { name: string; points: number; id: string }[];
     count: number;
@@ -47,17 +45,14 @@ export const updateTournament = async (
     }[];
   },
 ) => {
-  const response = await axios.patch(
-    `http://localhost:4006/api/tournaments/${id}`,
-    {
-      name: body.name,
-      players: body.players
-        .filter((x) => x.name)
-        .map((player) => ({
-          id: player.id,
-          name: player.name,
-        })),
-    },
-  );
+  const response = await api.patch(`/tournaments/${id}`, {
+    name: body.name,
+    players: body.players
+      .filter((x) => x.name)
+      .map((player) => ({
+        id: player.id,
+        name: player.name,
+      })),
+  });
   return response.data as { id: string };
 };

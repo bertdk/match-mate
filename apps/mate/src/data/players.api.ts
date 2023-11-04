@@ -1,9 +1,7 @@
-import axios from 'axios';
+import { api } from './base.api';
 
 export const getPlayers = async (tournamentId: string) => {
-  const res = await axios.get(
-    `http://localhost:4006/api/players/tournaments/${tournamentId}`,
-  );
+  const res = await api.get(`/players/tournaments/${tournamentId}`);
   const players = res.data;
   return players as {
     count: number;

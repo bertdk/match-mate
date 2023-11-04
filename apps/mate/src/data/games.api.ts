@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { api } from './base.api';
 
 export type TournamentGame = {
   id: string;
@@ -18,9 +18,7 @@ interface TournamentGames {
 }
 
 export const getGames = async (tournamentId: string) => {
-  const res = await axios.get(
-    `http://localhost:4006/api/games?tournamentId=${tournamentId}`,
-  );
+  const res = await api.get(`/games?tournamentId=${tournamentId}`);
 
   return res.data as TournamentGames;
 };
@@ -34,14 +32,11 @@ export const createGame = async (
     }[];
   },
 ) => {
-  const response = await axios.post(
-    `http://localhost:4006/api/games/tournaments/${tournamentId}`,
-    {
-      scores: body.scores.map((score) => ({
-        playerId: score.playerId,
-        gamePoints: score.gamePoints,
-      })),
-    },
-  );
+  const response = await api.post(`/games/tournaments/${tournamentId}`, {
+    scores: body.scores.map((score) => ({
+      playerId: score.playerId,
+      gamePoints: score.gamePoints,
+    })),
+  });
   return response.data as { id: string };
 };
