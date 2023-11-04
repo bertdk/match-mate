@@ -24,7 +24,6 @@ async function bootstrap() {
   await app.listen(port);
   app.enableCors(config.cors);
 
-  Logger.log(`Test env: ${config.test}`);
   Logger.log(`🚀 Application is running on: http://localhost:${port}/docs`);
 }
 
