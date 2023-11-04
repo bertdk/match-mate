@@ -1,4 +1,3 @@
 import axios from 'axios';
-import config from 'src/config';
 
-export const api = axios.create({ baseURL: config.apiUrl });
+export const api = axios.create({ baseURL: import.meta.env.API_URL });

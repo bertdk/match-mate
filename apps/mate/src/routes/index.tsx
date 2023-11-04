@@ -7,7 +7,10 @@ export default component$(() => {
   return (
     <div>
       <Heading text="Match Mate" />
-
+      <p>Api url: {import.meta.env.PUBLIC_API_URL}</p>
+      <p>Mode: {import.meta.env.MODE}</p>
+      <p>Dev: {import.meta.env.DEV && 'yes'}</p>
+      <p>Prod: {import.meta.env.PROD && 'yes'}</p>
       <Link href="/tournaments/create">Start a new tournament</Link>
     </div>
   );

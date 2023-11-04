@@ -43,3 +43,4 @@ Thumbs.db
 
 # Secrets
 *.production.json
+.env.*
