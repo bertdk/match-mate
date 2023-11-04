@@ -31,6 +31,7 @@ USER node
 WORKDIR /src
 
 COPY --from=server-build --chown=node:node /src/dist/apps/match ./
+ENV NODE_ENV=production
 RUN pnpm i
 RUN pnpm i source-map-support
 ENTRYPOINT [ "node", "-r", "source-map-support/register", "./main.js" ]

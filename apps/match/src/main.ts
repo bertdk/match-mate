@@ -23,6 +23,7 @@ async function bootstrap() {
   const port = config.port;
   await app.listen(port);
   app.enableCors(config.cors);
+  Logger.log(`Node env: ${process.env.NODE_ENV}`);
 
   Logger.log(`🚀 Application is running on: http://localhost:${port}/docs`);
 }
