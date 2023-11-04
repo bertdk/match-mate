@@ -17,15 +17,17 @@ export const processConfig = <T>(
   localConfigFetcher: () => Partial<T>,
 ): T => {
   let localConfig: Partial<T>;
-  try {
-    localConfig = localConfigFetcher();
-  } catch (error) {
-    console.error('No local config found');
+  if (['local', 'test'].includes(process.env.NODE_ENV)) {
+    try {
+      localConfig = localConfigFetcher();
+    } catch (error) {
+      console.error('No local config found');
+    }
   }
 
   let config = applyEnvConfig(srcConfig);
 
-  if (localConfig) {
+  if (process.env.NODE_ENV !== 'production' && localConfig) {
     config = mergeNestedObjects(
       applyEnvConfig(config),
       applyEnvConfig(localConfig),
