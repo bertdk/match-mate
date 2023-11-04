@@ -1,0 +1,6 @@
+{
+  "nodeEnv": "local",
+  "api": {
+    "url": "http://localhost:4006/api"
+  }
+}
