@@ -1,23 +1,36 @@
-FROM node:18-slim as BUILD
+FROM node:18-alpine3.18 as server-node
 
-RUN npm i -g pnpm@8
-RUN mkdir -p /app
-WORKDIR /app
-COPY . /app
+RUN npm i -g pnpm@8 
 
+
+FROM server-node AS server-base
+WORKDIR /src
+RUN apk add --no-cache \
+  python3 \
+  make \
+  gcc \
+  g++
+COPY package.json \
+  tsconfig* \
+  nx.json \
+  pnpm-lock.yaml \
+  ./
 RUN pnpm i
-RUN nx run match:build:production
 
-FROM node:18-slim
 
-RUN npm i -g pnpm@8
+FROM server-base AS server-build
 
-RUN mkdir -p /app
-WORKDIR /app
+COPY apps/match ./apps/match/
+COPY libs ./libs/
+RUN pnpm nx run match:build:production
 
-COPY --from=BUILD ./dist/apps/match /app
+
+FROM server-node AS server-prod
+LABEL description="The server side for the MatchMate webapp"
+USER node
+WORKDIR /src
+
+COPY --from=server-build --chown=node:node /src/dist/apps/match ./
 RUN pnpm i
 RUN pnpm i source-map-support
-
-EXPOSE 10000
 ENTRYPOINT [ "node", "-r", "source-map-support/register", "./main.js" ]
