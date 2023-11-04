@@ -30,17 +30,17 @@ async function bootstrap() {
 
 async function runMigrationsIfNeeded(app: INestApplication) {
   try {
-    console.log('DEBUG INFO | start running migrations');
+    Logger.debug('DEBUG INFO | start running migrations');
     const orm = app.get(MikroORM);
     const migrator = orm.getMigrator();
     const migrations = await migrator.getPendingMigrations();
     await migrator.up();
-    console.log(
+    Logger.debug(
       `DEBUG INFO | successfully ran ${migrations.length} migrations`,
     );
   } catch (e) {
     captureException(e);
-    console.error('Failed to migrate db', e);
+    Logger.error('Failed to migrate db', e);
   }
 }
 
