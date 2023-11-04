@@ -31,6 +31,11 @@ async function bootstrap() {
 async function runMigrationsIfNeeded(app: INestApplication) {
   try {
     Logger.debug('DEBUG INFO | start running migrations');
+    console.log({
+      u: config.db.user,
+      ssl: config.db.ssl,
+      host: config.db.host,
+    });
     const orm = app.get(MikroORM);
     const migrator = orm.getMigrator();
     const migrations = await migrator.getPendingMigrations();
