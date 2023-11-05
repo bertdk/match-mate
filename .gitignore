@@ -43,4 +43,4 @@ Thumbs.db
 
 # Secrets
 *.production.json
-.env.*
+.env.local
