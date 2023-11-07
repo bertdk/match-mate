@@ -1,7 +1,7 @@
-import { api } from './base.api';
+import { get } from './base.api';
 
 export const getPlayers = async (tournamentId: string) => {
-  const res = await api.get(`/players/tournaments/${tournamentId}`);
+  const res = await get(`/players/tournaments/${tournamentId}`);
   const players = res.data;
   return players as {
     count: number;

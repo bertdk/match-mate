@@ -1,4 +1,4 @@
-import { api } from './base.api';
+import { get, post } from './base.api';
 
 export type TournamentGame = {
   id: string;
@@ -18,7 +18,7 @@ interface TournamentGames {
 }
 
 export const getGames = async (tournamentId: string) => {
-  const res = await api.get(`/games?tournamentId=${tournamentId}`);
+  const res = await get(`/games?tournamentId=${tournamentId}`);
 
   return res.data as TournamentGames;
 };
@@ -32,7 +32,7 @@ export const createGame = async (
     }[];
   },
 ) => {
-  const response = await api.post(`/games/tournaments/${tournamentId}`, {
+  const response = await post(`/games/tournaments/${tournamentId}`, {
     scores: body.scores.map((score) => ({
       playerId: score.playerId,
       gamePoints: score.gamePoints,
