@@ -8,6 +8,9 @@ export default component$(() => {
     <div>
       <Heading text="Match Mate" />
       <Link href="/tournaments/create">Start a new tournament</Link>
+      <p>
+        <Link href="/tournaments">Tournaments overview</Link>
+      </p>
     </div>
   );
 });
